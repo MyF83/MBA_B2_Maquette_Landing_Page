@@ -1109,7 +1109,51 @@ document.getElementById('colorSelect').addEventListener('change', function() {
 
 	
   })();
+
+	
+// --- NEWSLETTER FORM EN REPONSE A LA QUESTION 3.2 ---
+(function(){
+
+  const form = document.querySelector(".footer-newsletter form");
+
+  if(!form) return;
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault(); // empêche rechargement
+
+    const first = form.querySelector("input[placeholder='Prénom']");
+    const last  = form.querySelector("input[placeholder='Nom']");
+    const email = form.querySelector("input[type='email']");
+
+    // Vérification simple
+    if(!first.value.trim() || !last.value.trim() || !email.value.trim()){
+      alert("Merci de remplir tous les champs.");
+      return;
+    }
+
+    // Validation email
+    const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailReg.test(email.value)){
+      alert("Veuillez entrer une adresse email valide.");
+      return;
+    }
+
+    // Ici on simule un envoi au serveur
+    // (à remplacer par un fetch() plus tard)
+    setTimeout(()=>{
+      alert("🎉 Merci ! Votre inscription à la newsletter est bien enregistrée.");
+
+      // Réinitialise le formulaire
+      form.reset();
+
+    },600);
+
+  });
+
+})();
+	
 </script>
 
 </body>
 </html>
+

@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Gravity Edge Eco — Wireframe Hero</title>
+
+<!-- Roboto Thin & Black -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap" rel="stylesheet">
+
+<style>
+  /* RESET */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Roboto",sans-serif;
+    background:#f3f3f3;
+    color:#171717;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Variables charte */
+  :root{
+    --orange:#FF750F;
+    --brown:#672D09;
+    --black:#171717;
+    --panel-bg:#1f1f1f;
+    --muted:#e1e1e1;
+    --max-width:1300px;
+  }
+
+  .wrap{
+    max-width:var(--max-width);
+    margin:18px auto;
+    padding:0 16px;
+  }
+
+  /* HEADER */
+  header.header{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    background:var(--black);
+    color:var(--orange);
+    padding:14px 18px;
+    border-radius:6px;
+  }
+  .header .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .header img{height:48px; width:auto; display:block}
+  .header .search{
+    margin-left:8px;
+    flex:1;
+  }
+  .header .search input{
+    width:100%;
+    padding:8px 12px;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,0.08);
+    background:#fff;
+    height:40px;
+  }
+  .header h1{
+    margin-left:20px;
+    font-weight:900;
+    font-size:20px;
+    color: #fff;
+    white-space:normal;
+  }
+
+  /* HERO LAYOUT */
+  .hero{
+    display:flex;
+    gap:18px;
+    margin-top:18px;
+    min-height:480px;
+    background:#fff;
+    border:3px solid var(--brown);
+    border-radius:6px;
+    overflow:hidden;
+  }
+
+  /* CONFIG PANEL (left) */
+  .config-panel{
+    width:300px;
+    background:var(--panel-bg);
+    color:#fff;
+    padding:22px;
+    border-right:4px solid var(--orange);
+    flex-shrink:0;
+  }
+  .config-panel h2{
+    color:var(--orange);
+    font-weight:900;
+    margin-bottom:12px;
+    font-size:18px;
+  }
+  .config-panel .group{
+    margin-top:12px;
+    font-size:14px;
+    opacity:0.95;
+  }
+  .config-panel label{
+    display:block;
+    margin-top:8px;
+    font-weight:700;
+    font-size:13px;
+  }
+  .config-panel select, .config-panel input[type="checkbox"]{
+    margin-top:6px;
+  }
+  .config-panel .accessoires{
+    margin-top:12px;
+    font-weight:700;
+  }
+  /* make form controls look tidy in wireframe */
+  .config-panel select{
+    width:100%;
+    padding:8px;
+    border-radius:6px;
+    border: none;
+  }
+  .checkbox-list{
+    margin-top:8px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    font-weight:600;
+    color:#eaeaea;
+  }
+  .checkbox-list label{display:flex;gap:8px;align-items:center;font-size:14px}
+  .checkbox-list input{width:16px;height:16px}
+
+  /* HERO DISPLAY (center) */
+  .hero-display{
+    flex:1;
+    position:relative;
+    background: #e6e6e6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:420px;
+  }
+ 
+/* Garder la video youtube bien proportionnée sur tous les écrans */ 
+  .avis-video{
+  position:relative;
+  width:100%;
+  padding-bottom:56.25%; /* 16/9 */
+  height:0;
+}
+
+.avis-video iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
+
+  /* Bike image (uses uploaded asset path) */
+  .bike-wrap{
+    max-width:92%;
+    max-height:86%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .bike-wrap img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    display:block;
+    filter: none;
+    /* in wireframe we keep it neutral */
+  }
+
+  /* Overlay arrows */
+  .nav-arrow{
+    position:absolute;
+    width:56px;
+    height:56px;
+    background:rgba(255,255,255,0.95);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    cursor:pointer;
+    user-select:none;
+  }
+  .nav-arrow.left{left:12px; top:50%; transform:translateY(-50%)}
+  .nav-arrow.right{right:12px; top:50%; transform:translateY(-50%)}
+
+	.nav-arrow.top{
+	  display:none;
+	}
+
+/* Flèches Haut / Bas */
+.nav-arrow.up{
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-arrow.down{
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Ajustement SVG (même look que les autres flèches) */
+.nav-arrow.up svg,
+.nav-arrow.down svg{
+    width: 22px;
+    height: 22px;
+    fill: var(--black);
+}
+
+  /* small arrows for top/bottom optionally */
+  .nav-arrow.top{left:50%; top:12px; transform:translateX(-50%)}
+  .nav-arrow.bottom{left:50%; bottom:12px; transform:translateX(-50%)}
+
+  .nav-arrow svg{width:22px;height:22px;fill:var(--black)}
+
+  /* Simple caption / CTA area inside hero (wireframe placeholder) */
+  .hero-caption{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:14px;
+    background:rgba(23,23,23,0.78);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:14px;
+  }
+
+  /* ---------- Responsive rules ---------- */
+
+
+/* Limite la largeur de la barre de recherche à 10% du viewport sur grands écrans */
+/* Limit of searchbar width for high resolution screens */
+@media screen and (min-width: 1280px){
+  .header .search{
+    max-width: 20vw;   /* 10% de la largeur de la fenêtre */
+    flex: unset;       /* on empêche la zone de s’étendre */
+  }
+
+  .header .search input{
+    width: 100%;
+	min-width : 20vw;
+  }
+}
+
+
+  /* Tablettes et inférieurs: étirement panneaux en haut et hero section dessous */
+  /* Tablet and below: panel collapses on top, hero below */
+  @media (max-width: 1000px){
+    .config-panel{width:100%; border-right:none; border-bottom:4px solid var(--orange); padding:16px}
+    .hero{flex-direction:column; min-height:380px}
+    .hero-display{min-height:320px}
+    .header h1{font-size:16px}
+  }
+
+  /* Small phones: hide panel by default, add toggle button */
+  @media (max-width: 640px){
+    .hero-display{
+    position: relative;
+    z-index: 1;
+  }
+
+
+    .wrap{padding:10px}
+    .header{padding:10px}
+    .header img{height:44px}
+    .header .search{display:none}
+    .header h1{font-size:14px}
+    .config-panel{
+      display:none; /* hidden by default on tiny screens, toggled with JS */
+      position:relative;
+      z-index:10;
+	  width : 100%;
+	  margin-bottom : 15px;
+      left:0px;
+      right:12px;
+      top:auto;
+      border-radius:8px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.35);
+    }
+    .hero{flex-direction:column;border-radius:6px}
+    .nav-arrow{width:48px;height:48px}
+    .hero-display{margin-top: 10px;min-height:320px}
+    .hero-caption{font-size:13px; padding:8px 12px}
+
+    /* toggle button */
+    .panel-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--orange);
+      color:#fff;
+      border:none;
+      padding:8px 12px;
+      border-radius:24px;
+      font-weight:900;
+      cursor:pointer;
+      margin-left:auto;
+    }
+  }
+
+  /* accessibility focus */
+  .nav-arrow:focus, .panel-toggle:focus, .checkbox-list input:focus, .config-panel select:focus{
+    outline:3px solid rgba(255,117,15,0.28);
+    outline-offset:2px;
+  }
+
+  /* small polish for wireframe look */
+  .muted-box{
+    background:var(--muted);
+    padding:10px;
+    border-radius:6px;
+    color:#333;
+    font-weight:700;
+  }
+  
+  /* Full viewport layout sur grands écrans (desktop ≥ 1280px) */
+@media screen and (min-width: 1280px){
+
+  html, body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Le conteneur général prend tout l’écran */
+  .wrap{
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* La HERO devient l’élément plein écran */
+  .hero{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    flex: 1;
+  }
+
+  /* Contenu 3D à hauteur maxi */
+  .hero-display{
+    min-height: 100%;
+    height: 100%;
+  }
+
+  /* Panneau latéral prend hauteur complète au besoin */
+  .config-panel{
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  /* Header ne doit pas faire scroll */
+  .header{
+    border-radius: 0;
+  }
+  
+  .hero{
+  height: calc(100vh - 88px); /* remplacer 88px par la hauteur réelle du header */
+  }
+  
+  /* Call-to-Action "Réserver votre Gravity Edge Eco personnalisé"*/
+  .cta-reserver{
+  margin-top:20px;
+  width:100%;
+  padding:12px;
+  font-weight:900;
+  font-size:15px;
+  border:none;
+  border-radius:8px;
+  background:var(--orange);
+  color:#171717;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.cta-reserver:hover{
+  background:#ffa55b;
+}
+
+} 
+  /* Parties sous la Hero-Section */
+  /* SECTION – Avis Loic Bruni */
+  @media(min-width:900px){
+  .avis-video{
+    height:300px;
+    padding-bottom:0;
+    position:static;
+  }
+  .avis-video iframe{
+    position:static;
+    height:100%;
+  }
+}
+
+.avis-loic{
+padding:40px;
+background:#fff;
+border-left:4px solid var(--orange);
+margin-top:30px;
+}
+
+.avis-grid{
+display:flex;
+gap:30px;
+}
+
+.avis-video{
+flex:1;
+min-height:300px;
+}
+
+.avis-content{
+flex:1;
+font-size:16px;
+line-height:1.5;
+}
+
+/* SECTION – Informations techniques */
+.infos-techniques{
+padding:50px;
+background:#fff;
+border-left:4px solid var(--orange);
+margin-top:30px;
+}
+
+.infos-columns{
+display:flex;
+gap:40px;
+}
+
+.infos-columns div{
+flex:1;
+}
+
+.graph-placeholder{
+background:#ddd;
+height:200px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+color:#333;
+border-radius:6px;
+}
+
+/* SECTION – Témoignages */
+.temoignages-clients{
+padding:40px;
+background:#fff;
+border-left:4px solid var(--orange);
+margin-top:30px;
+}
+
+.temoignage-list{
+display:flex;
+gap:20px;
+margin-top:20px;
+}
+
+.temoignage-list article{
+flex:1;
+background:#f3f3f3;
+padding:20px;
+border-radius:6px;
+}
+
+/* SECTION – Comparateur */
+.comparateur{
+padding:50px;
+background:#fff;
+border-left:4px solid var(--orange);
+margin-top:30px;
+}
+
+.compare-grid{
+display:flex;
+gap:40px;
+margin-bottom:20px;
+}
+
+.compare-item{
+flex:1;
+text-align:center;
+}
+
+.compare-item img{
+max-width:100%;
+border-radius:6px;
+}
+
+.compare-table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+.compare-table td,
+.compare-table th{
+border:1px solid #ccc;
+padding:12px;
+text-align:left;
+}
+
+/* SECTION – Valeurs entreprise */
+.valeurs-entreprise{
+padding:50px;
+background:#fff;
+border-left:4px solid var(--orange);
+margin-top:30px;
+font-size:17px;
+line-height:1.6;
+}
+
+/* FOOTER */
+.site-footer{
+background:#171717;
+color:#fff;
+padding:50px;
+margin-top:40px;
+}
+
+.footer-grid{
+display:flex;
+gap:40px;
+}
+
+.footer-grid div{
+flex:1;
+}
+
+.footer-legal ul{
+list-style:none;
+}
+
+.footer-legal ul li a{
+color:#fff;
+text-decoration:none;
+}
+
+.footer-newsletter form input,
+.footer-newsletter form button{
+width:100%;
+padding:10px;
+border-radius:6px;
+margin-top:8px;
+border:none;
+}
+
+.footer-newsletter form button{
+background:var(--orange);
+font-weight:bold;
+cursor:pointer;
+}
+
+.social-icons{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.social-icons a{
+background:#fff;
+color:#171717;
+padding:6px 10px;
+border-radius:4px;
+font-weight:bold;
+text-decoration:none;
+}
+
+/* ================================================
+             RESPONSIVE SECTIONS 
+			  TOUTES SECTIONS
+================================================ */
+
+/* ================================================
+RESPONSIVE  HERO SECTION
+================================================ */
+@media(max-width:900px){
+
+.avis-grid,
+.infos-columns,
+.temoignage-list,
+.compare-grid,
+.footer-grid{
+flex-direction:column;
+}
+
+.graph-placeholder{
+height:160px;
+}
+
+}
+
+/* ================================================
+RESPONSIVE SECTIONS SOUS LA HERO SECTION
+================================================ */
+
+/* Tablettes & petits écrans */
+@media(max-width:950px){
+
+/* Avis Loïc Bruni */
+.avis-grid{
+flex-direction:column;
+}
+.avis-video{
+height:250px;
+}
+
+/* Informations techniques */
+.infos-columns{
+flex-direction:column;
+gap:20px;
+}
+
+/* Témoignages */
+.temoignage-list{
+flex-direction:column;
+}
+
+/* Comparateur */
+.compare-grid{
+flex-direction:column;
+gap:20px;
+}
+.compare-item img{
+max-width:240px;
+margin:auto;
+display:block;
+}
+.compare-table th,
+.compare-table td{
+font-size:14px;
+padding:8px;
+}
+
+/* Valeurs */
+.valeurs-entreprise{
+font-size:15px;
+}
+
+/* Footer */
+.footer-grid{
+flex-direction:column;
+gap:30px;
+}
+.footer-newsletter form input,
+.footer-newsletter form button{
+font-size:15px;
+}
+}
+
+@media(max-width:600px){
+
+section{
+padding:25px;
+}
+
+h2{
+font-size:20px;
+}
+
+/* Comparateur */
+.compare-table td,
+.compare-table th{
+font-size:13px;
+padding:6px;
+}
+
+/* Footer */
+.footer-newsletter form input,
+.footer-newsletter form button{
+font-size:14px;
+}
+}
+
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="header" role="banner">
+    <div class="logo" aria-hidden="false">
+      <img src="logo.png" alt="Endurance Extrême — logo (remplacez par votre fichier)"/>
+    </div>
+
+    <div class="search" role="search" aria-label="recherche">
+      <input type="search" placeholder="Rechercher (ex : témoignages)" aria-label="recherche"/>
+    </div>
+
+    <!-- panel toggle visible on very small screens -->
+    <button class="panel-toggle" id="panelToggle" aria-expanded="false" aria-controls="configPanel" style="display:none">
+      Configurer
+    </button>
+
+    <h1 style="margin-left:12px;">Gravity Edge Eco — Découvrez le VTT de descente autrement</h1>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" role="region" aria-label="hero - configurateur et visuel 3D">
+
+    <!-- CONFIG PANEL (left) -->
+    <aside id="configPanel" class="config-panel" aria-label="panneau de configuration">
+      <h2>Votre configuration</h2>
+
+      <div class="group">
+        <label for="modelSelect">Modèle</label>
+        <select id="modelSelect" aria-label="choisir le modèle">
+          <option>Gravity Edge Eco</option>
+          <option>Gravity Edge Eco + Pack Accessoires</option>
+        </select>
+
+        <label for="colorSelect">Couleur du cadre</label>
+        <select id="colorSelect" aria-label="choisir la couleur du cadre">
+          <option>Savage</option>
+          <option>Sportage</option>
+          <option>HighTek</option>
+        </select>
+
+        <label for="suspSelect">Suspension</label>
+        <select id="suspSelect" aria-label="choisir la suspension">
+          <option>RS Fox Pro</option>
+          <option>Carbon Alloy</option>
+          <option>Rebound 360</option>
+        </select>
+
+        <label for="brakeSelect">Freinage</label>
+        <select id="brakeSelect" aria-label="choisir le freinage">
+          <option>Disque Pro 400mm</option>
+          <option>Super Disc 500mm</option>
+        </select>
+      </div>
+
+      <div class="group accessoires">
+        <div style="margin-top:10px; color:#f0f0f0; font-weight:900">Accessoires</div>
+        <div class="checkbox-list" aria-label="liste d'accessoires">
+          <label><input type="checkbox" /> Support Bidon</label>
+          <label><input type="checkbox" checked /> Éclairage LED Arrière</label>
+          <label><input type="checkbox" checked /> Extensions poignées</label>
+          <label><input type="checkbox" /> Casque GSV-15 renforcé</label>
+          <label><input type="checkbox" /> Selle renforcée</label>
+        </div>
+      </div>
+	  
+	  <!-- Mon Call-To-Action ;-) -->
+	  <button class="cta-reserver">
+			Réserver mon Gravity Edge ECO personnalisé
+	  </button>
+
+    </aside>
+
+    <!-- HERO DISPLAY (center) -->
+    <div class="hero-display" role="img" aria-label="visuel du vélo / animation 3D">
+      <div class="bike-wrap">
+        <!-- path to your uploaded asset (replace if moved). -->
+        <img src="velo-3D-Savage.png" alt="Gravity Edge Eco — placeholder visuel (remplacez par votre intégration 3D)" />
+      </div>
+
+      <!-- arrows overlay -->
+      <button class="nav-arrow left" aria-label="précédent">
+        <!-- Flèche Gauche  -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+			<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+		</svg>
+      </button>
+
+      <button class="nav-arrow right" aria-label="suivant">
+        <!-- Flèche Droite  -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+			<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+		</svg>
+      </button>
+	  <!-- Flèche Haut -->
+	  <button class="nav-arrow up" aria-label="haut">
+		 <svg viewBox="0 0 24 24" aria-hidden="true">
+			 <path d="M7.41 15.59L12 11l4.59 4.59L18 14l-6-6-6 6z"/>
+		 </svg>
+	  </button>
+	  <!-- Flèche Bas -->
+	  <button class="nav-arrow down" aria-label="bas">
+		  <svg viewBox="0 0 24 24" aria-hidden="true">
+			  <path d="M7.41 8.41L12 13l4.59-4.59L18 10l-6 6-6-6z"/>
+		  </svg>
+	  </button>
+
+
+      <!-- optional top/bottom arrows -->
+      <div class="nav-arrow top" style="top:14px; left:auto; right:14px; transform:none; border-radius:50%; width:40px; height:40px; background:rgba(255,255,255,0.9)"><!-- triangle up icon could go here --></div>
+      <div class="hero-caption">Animation 3D — Gravity Edge Eco (placeholder)</div>
+    </div>
+
+
+  </section>
+<!-- FIN DE SECTION – "HERO SECTION" -->
+  
+<!-- DEBUT DES SOUS-SECTIONS  -->
+  
+<!-- SECTION – Avis de Loïc Bruni -->
+<section class="avis-loic">
+  <div class="avis-grid">
+
+
+<!-- Vidéo à gauche -->
+<div class="avis-video">
+  <iframe 
+    width="100%" 
+    height="100%" 
+    src="https://www.youtube.com/embed/XXXXXXXX"
+    title="Avis de Loïc Bruni" 
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- Avis texte à droite -->
+<div class="avis-content">
+  <h2>L’avis de Loïc Bruni</h2>
+  <p>
+    « J’ai eu la chance de tester le Gravity Edge Eco sur terrain technique, 
+    conditions réelles, en mode compétition. Sa rigidité et son amorti vous donnent 
+    confiance même dans les sections les plus engagées. Sa légèreté en fait un vélo 
+    très dynamique en relance, et le travail des suspensions est irréprochable. 
+    Un vélo taillé pour les descentes extrêmes. »
+  </p>
+  <p style="font-weight:bold;margin-top:10px;">
+    – Loïc Bruni, Champion du Monde de VTT de Descente
+  </p>
+</div>
+
+
+  </div>
+</section>
+
+<!-- SECTION – Informations techniques -->
+
+<section class="infos-techniques">
+  <h2>Informations techniques</h2>
+
+  <div class="infos-columns">
+
+
+<div>
+  <h3>Matériaux & Conception</h3>
+  <p>
+    Cadre développé par nos ingénieurs avec fibres hybrides, alliages renforcés et 
+    résines écologiques hautes performances, pour un vélo rigide, durable et léger.
+  </p>
+</div>
+
+<div>
+  <h3>Performances visées</h3>
+  <ul>
+    <li>Robustesse maximale</li>
+    <li>Maniabilité en terrains instables</li>
+    <li>Poids réduit pour les relances</li>
+    <li>Amorti renforcé pour absorption des chocs</li>
+  </ul>
+</div>
+
+<div>
+  <h3>Résultats tests atelier</h3>
+  <div class="graph-placeholder">
+    Diagramme de performance<br>(Wireframe – remplacer par votre graphique)
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+<!-- SECTION – Avis Clients -->
+
+<section class="temoignages-clients">
+  <h2>Ils témoignent</h2>
+
+  <div class="temoignage-list">
+    <article>
+      <p>"Un vélo qui change l’approche de la descente. Précis, joueur et ultra rassurant."</p>
+      <span>— Antoine M.</span>
+    </article>
+    <article>
+      <p>"Je progresse à chaque sortie, clairement un investissement qui valait le coup."</p>
+      <span>— Louise R.</span>
+    </article>
+    <article>
+      <p>"Stable, fiable et vraiment confortable en longue descente."</p>
+      <span>— Maxime B.</span>
+    </article>
+  </div>
+</section>
+
+<!-- SECTION – Comparateur -->
+
+<section class="comparateur">
+  <h2>Comparateur de modèles</h2>
+
+  <div class="compare-grid">
+
+
+<!-- Ancien modèle -->
+<div class="compare-item">
+  <h3>Raptor 21</h3>
+  <img src="velo-raptor21.png" alt="Raptor 21">
+  <p>Prix : <strong>3569€</strong></p>
+</div>
+
+<!-- Nouveau modèle -->
+<div class="compare-item">
+  <h3>Gravity Edge Eco</h3>
+  <img src="velo-3D-Savage.png" alt="Gravity Edge Eco">
+  <p>Prix : <strong>4239€</strong></p>
+</div>
+
+
+  </div>
+
+  <table class="compare-table">
+    <tr>
+      <th>Caractéristiques</th>
+      <th>Raptor 21</th>
+      <th>Gravity Edge Eco</th>
+    </tr>
+    <tr>
+      <td>Poids</td>
+      <td>14.8 kg</td>
+      <td>13.3 kg</td>
+    </tr>
+    <tr>
+      <td>Suspension</td>
+      <td>Standard Air</td>
+      <td>RS Fox Pro – Amortissement renforcé</td>
+    </tr>
+    <tr>
+      <td>Cadre</td>
+      <td>Aluminium standard</td>
+      <td>Alliage hybride & fibres composites éco-traitées</td>
+    </tr>
+    <tr>
+      <td>Amorti choc</td>
+      <td>★★★☆☆</td>
+      <td>★★★★★</td>
+    </tr>
+  </table>
+</section>
+
+<!-- SECTION – Valeurs de l’entreprise -->
+
+<section class="valeurs-entreprise">
+  <h2>Valeurs de l’entreprise</h2>
+
+  <article>
+    <p>
+      « Depuis dix ans, nous développons des équipements pour les amateurs de sports extrêmes 
+      avec un même fil conducteur : écologie, innovation, sensations et respect de la planète.  
+      Le Gravity Edge Eco représente la synthèse parfaite de nos ambitions : un VTT 
+      de descente puissant, durable et pensé pour celles et ceux qui repoussent leurs limites 
+      avec passion. »
+    </p>
+
+
+<p style="margin-top:15px;font-weight:bold;">
+  — Achille Montagne, PDG d’Endurance Extrême
+</p>
+
+
+  </article>
+</section>
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+  <div class="footer-grid">
+
+
+<!-- Liens légaux -->
+<div class="footer-legal">
+  <h4>Informations</h4>
+  <ul>
+    <li><a href="#">Mentions légales</a></li>
+    <li><a href="#">Politique de sécurité</a></li>
+    <li><a href="#">Politique de confidentialité</a></li>
+    <li><a href="#">CGV</a></li>
+  </ul>
+</div>
+
+<!-- Newsletter -->
+<div class="footer-newsletter">
+  <h4>Inscription Newsletter</h4>
+  <form>
+    <input type="text" placeholder="Prénom" required>
+    <input type="text" placeholder="Nom" required>
+    <input type="email" placeholder="Email" required>
+    <button type="submit">S'inscrire</button>
+  </form>
+</div>
+
+<!-- Réseaux sociaux -->
+<div class="footer-social">
+  <h4>Suivez-nous</h4>
+  <div class="social-icons">
+    <a href="#">YouTube</a>
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">Pinterest</a>
+    <a href="#">X</a>
+    <a href="#">Trala</a>
+  </div>
+</div>
+
+
+  </div>
+
+</footer>
+
+
+</div>
+
+<script>
+  // Responsive helper: show panel toggle only on very small screens
+  (function(){
+    const panel = document.getElementById('configPanel');
+    const toggle = document.getElementById('panelToggle');
+
+    function updateToggleVisibility(){
+      const small = window.matchMedia('(max-width:640px)').matches;
+      if(small){
+        toggle.style.display = 'inline-flex';
+        toggle.setAttribute('aria-hidden','false');
+      } else {
+        toggle.style.display = 'none';
+        toggle.setAttribute('aria-hidden','true');
+        // ensure panel visible on larger screens
+        panel.style.display = '';
+        toggle.setAttribute('aria-expanded','false');
+      }
+    }
+
+    toggle.addEventListener('click', function(){
+      const isOpen = panel.style.display === 'block';
+      if(isOpen){
+        panel.style.display = 'none';
+        this.setAttribute('aria-expanded','false');
+      } else {
+        panel.style.display = 'block';
+        this.setAttribute('aria-expanded','true');
+      }
+      // scroll panel into view on open for small screens
+      if(panel.style.display === 'block'){
+        panel.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+
+    window.addEventListener('resize', updateToggleVisibility);
+    updateToggleVisibility();
+	
+	
+	// --- changement dynamique de l'image du vélo ---
+document.getElementById('colorSelect').addEventListener('change', function() {
+
+  const bikeImage = document.querySelector('.bike-wrap img');
+  const selected = this.value.trim();
+
+  let newSrc = "velo-3D-Savage.png"; // valeur par défaut
+
+  switch(selected){
+    case "Savage":
+      newSrc = "velo-3D-Savage.png";
+      break;
+
+    case "Sportage":
+      newSrc = "velo-3D-Sportage.png";
+      break;
+
+    case "HighTek":
+      newSrc = "velo-3D-HighTek.png";
+      break;
+  }
+
+  bikeImage.src = newSrc;
+});
+
+	
+  })();
+</script>
+
+</body>
+</html>

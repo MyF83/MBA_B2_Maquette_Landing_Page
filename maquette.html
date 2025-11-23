@@ -1110,16 +1110,21 @@ document.getElementById('colorSelect').addEventListener('change', function() {
 	
   })();
 
-	
-// --- NEWSLETTER FORM EN REPONSE A LA QUESTION 3.2 ---
+// NEWSLETTER FORM EN REPONSE A LA QUESTION 3.2 
 (function(){
 
   const form = document.querySelector(".footer-newsletter form");
-
   if(!form) return;
 
+  // Création de la zone de message
+  const message = document.createElement("div");
+  message.style.marginTop = "12px";
+  message.style.fontWeight = "bold";
+  form.appendChild(message);
+
   form.addEventListener("submit", function(e){
-    e.preventDefault(); // empêche rechargement
+    e.preventDefault();     // empêche toute action navigateur
+    e.stopPropagation();    // bloque d'autres handlers potentiels
 
     const first = form.querySelector("input[placeholder='Prénom']");
     const last  = form.querySelector("input[placeholder='Nom']");
@@ -1127,33 +1132,32 @@ document.getElementById('colorSelect').addEventListener('change', function() {
 
     // Vérification simple
     if(!first.value.trim() || !last.value.trim() || !email.value.trim()){
-      alert("Merci de remplir tous les champs.");
+      message.style.color = "#ff0000";
+      message.textContent = "⚠ Merci de remplir tous les champs.";
       return;
     }
 
     // Validation email
     const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(!emailReg.test(email.value)){
-      alert("Veuillez entrer une adresse email valide.");
+      message.style.color = "#ff0000";
+      message.textContent = "⚠ Veuillez entrer une adresse email valide.";
       return;
     }
 
-    // Ici on simule un envoi au serveur
-    // (à remplacer par un fetch() plus tard)
-    setTimeout(()=>{
-      alert("🎉 Merci ! Votre inscription à la newsletter est bien enregistrée.");
+    // Succès simulé
+    message.style.color = "#2ecc71";
+    message.textContent = "🎉 Merci ! Votre inscription à la newsletter est bien enregistrée.";
 
-      // Réinitialise le formulaire
-      form.reset();
+    // Réinitialisation du formulaire
+    form.reset();
 
-    },600);
-
+    // Empêche que le navigateur remonte en haut
+    return false;
   });
 
-})();
-	
+})();  
 </script>
 
 </body>
 </html>
-
